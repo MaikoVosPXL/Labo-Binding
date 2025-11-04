@@ -4,13 +4,13 @@ namespace ActorsApplication.Pages;
 
 public partial class ActorDetailPage : ContentPage
 {
-    private Actor selectedActor;
+    private Actor _selectedActor;
 
 	public ActorDetailPage()
 	{
 		InitializeComponent();
 
-        selectedActor = new Actor()
+        _selectedActor = new Actor()
         {
             LastName = "Carell",
             FirstName = "Steve",
@@ -20,11 +20,16 @@ public partial class ActorDetailPage : ContentPage
         };
     }
 
+    protected override void OnAppearing()
+    {
+        BindingContext = _selectedActor;
+    }
+
     private void DemoChange(object sender, EventArgs e)
     {
-        selectedActor.FirstName = "Michael Gary";
-        selectedActor.LastName = "Scott";
-        selectedActor.ProfilePicture = "https://upload.wikimedia.org/wikipedia/en/thumb/d/dc/MichaelScott.png/220px-MichaelScott.png";
-        selectedActor.ShortBio = "Michael Gary Scott is a fictional character in the NBC sitcom The Office, portrayed by Steve Carell. Michael is the regional manager of the Scranton, Pennsylvania branch of Dunder Mifflin, a paper company, for the majority of the series.";
+        _selectedActor.FirstName = "Michael Gary";
+        _selectedActor.LastName = "Scott";
+        _selectedActor.ProfilePicture = "https://upload.wikimedia.org/wikipedia/en/thumb/d/dc/MichaelScott.png/220px-MichaelScott.png";
+        _selectedActor.ShortBio = "Michael Gary Scott is a fictional character in the NBC sitcom The Office, portrayed by Steve Carell. Michael is the regional manager of the Scranton, Pennsylvania branch of Dunder Mifflin, a paper company, for the majority of the series.";
     }
 }

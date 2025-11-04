@@ -2,13 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ActorsApplication.Pages.ActorDetailPage"
-             Title="{Binding LastName}">
+             Title="{Binding FullName}">
     <VerticalStackLayout x:Name="ActorDetailStack">
-        <Image WidthRequest="150" Source="https://i.ytimg.com/vi/nX7CeTXoxyU/mqdefault.jpg"></Image>
-        <Label HorizontalOptions="Center" FontSize="30" Text="Unknown"></Label>
-        <Label HorizontalOptions="Center" Text="Actor"></Label>
-        <Label HorizontalOptions="Center" Margin="10" Text="1970"></Label>
-        <Label HorizontalOptions="Start" Margin="10" Text="I know nothing."></Label>
+        <Image WidthRequest="150" Source="{Binding ProfilePicture}"></Image>
+        <Label HorizontalOptions="Center" FontSize="30" Text="{Binding LastName}"></Label>
+        <Label HorizontalOptions="Center" Text="{Binding FirstName}"></Label>
+        <Label HorizontalOptions="Center" Margin="10" Text="{Binding BirthYear}"></Label>
+        <Label HorizontalOptions="Start" Margin="10" Text="{Binding ShortBio}"></Label>
 
         <Button Text="Change Actor Details" Clicked="DemoChange"></Button>
     </VerticalStackLayout>
