@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ActorsApplication.Pages.ViewToViewBinding"
-             Title="ViewToViewBinding">
-    <VerticalStackLayout Padding="10,0" >
-        <VerticalStackLayout MinimumHeightRequest="200" HorizontalOptions="Center" VerticalOptions="Center" 
-                             Padding="0,150">
-            <Label Text="Text"></Label>
+<ContentPage
+    x:Class="ActorsApplication.Pages.ViewToViewBinding"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="ViewToViewBinding">
+    <VerticalStackLayout Padding="10,0">
+        <VerticalStackLayout
+            Padding="0,150"
+            HorizontalOptions="Center"
+            MinimumHeightRequest="200"
+            VerticalOptions="Center">
+            <Label
+                FontSize="{Binding Source={x:Reference sizeSlider}, Path=Value}"
+                Rotation="{Binding Source={x:Reference rotationSlider}, Path=Value}"
+                Text="Text"
+                TextColor="{Binding Source={x:Reference colorPicker}, Path=SelectedItem}" />
         </VerticalStackLayout>
         <HorizontalStackLayout>
-            <Label Text="Text color:" VerticalOptions="Center"></Label>
-            <Picker x:Name="colorPicker"
-                    Title="Select a color">
+            <Label
+                Text="Text color:"
+                VerticalOptions="Center" />
+
+            <Picker
+                x:Name="colorPicker"
+                Title="Select a color"
+                BackgroundColor="{Binding Source={x:Reference colorPicker}, Path=SelectedItem}">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Green</x:String>
@@ -24,20 +37,28 @@
 
         </HorizontalStackLayout>
 
-        <HorizontalStackLayout >
-            <Label x:Name="displayRotationLabel"
-               Text="{Binding Source={x:Reference rotationSlider},
-                              Path=Value,
-                              StringFormat='Slider for rotation (Value: {0:F0}):'}"/>
-            <Slider x:Name="rotationSlider" Value ="0" WidthRequest="200" Maximum="360" Minimum="0" ></Slider>
+        <HorizontalStackLayout>
+            <Label
+                x:Name="displayRotationLabel"
+                Text="{Binding Source={x:Reference rotationSlider}, Path=Value, StringFormat='Slider for rotation (Value: {0:F0}):'}" />
+            <Slider
+                x:Name="rotationSlider"
+                Maximum="360"
+                Minimum="0"
+                WidthRequest="200"
+                Value="0" />
         </HorizontalStackLayout>
 
-        <HorizontalStackLayout >
-            <Label x:Name="displaySizeLabel"
-               Text="{Binding Source={x:Reference sizeSlider},
-                              Path=Value,
-                              StringFormat='Slider for size (Value: {0:F0}):'}"/>
-            <Slider x:Name="sizeSlider" Value ="40" WidthRequest="200" Maximum="100" Minimum="10" ></Slider>
+        <HorizontalStackLayout>
+            <Label
+                x:Name="displaySizeLabel"
+                Text="{Binding Source={x:Reference sizeSlider}, Path=Value, StringFormat='Slider for size (Value: {0:F0}):'}" />
+            <Slider
+                x:Name="sizeSlider"
+                Maximum="100"
+                Minimum="10"
+                WidthRequest="200"
+                Value="40" />
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
