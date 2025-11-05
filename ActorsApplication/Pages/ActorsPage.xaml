@@ -3,9 +3,12 @@
     x:Class="ActorsApplication.Pages.ActorsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:ActorsApplication.Data"
+    xmlns:pages="clr-namespace:ActorsApplication.Pages"
+    x:DataType="pages:ActorsPage"
     Title="ActorsPage"
     Shell.NavBarIsVisible="False">
-
+<!-- x:Datatype gebruiken voor binding en zeggen waar moet ik het object halen. als ge datatype gebruikt dan kan de Binding: zien wat er in zit en gemakkelijker aanspreken.-->
     <ScrollView>
         <StackLayout>
             <Label
@@ -14,7 +17,7 @@
                 FontSize="Medium"
                 Text="Actors of the day"
                 TextColor="Crimson" />
-            <CollectionView>
+            <CollectionView ItemsSource="{Binding ActorsList}">
 
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout
@@ -23,9 +26,10 @@
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="models:Actor">
 
-                        <Grid Margin="6">
+                        <Grid Margin="6"
+                              BackgroundColor="{Binding BirthYear, Converter={x:StaticResource AgeToColor}}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="2*" />
@@ -36,7 +40,7 @@
                                 Aspect="AspectFill"
                                 HeightRequest="150"
                                 HorizontalOptions="Start"
-                                Source="splash.png"
+                                Source="{Binding ProfilePicture}"
                                 VerticalOptions="Start"
                                 WidthRequest="100" />
 
@@ -49,14 +53,18 @@
 
                                 <Label
                                     FontAttributes="Bold"
-                                    Text=""
+                                    Text="{Binding FirstName}"
                                     VerticalOptions="Center" />
 
                                 <Label
                                     FontAttributes="Italic"
                                     MaxLines="4"
-                                    Text=""
+                                    Text="{Binding BirthYear, Converter={x:StaticResource AgeToString}}"
                                     VerticalOptions="Start" />
+                                <Button
+                                    Clicked="DeleteThisActor"
+                                    Text="Delete"
+                                    CommandParameter="{Binding .}"/>
                             </StackLayout>
 
                         </Grid>
@@ -64,7 +72,9 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <!--<Button Text="Add Actor" Clicked="AddActorClicked"></Button>-->
+            <Button
+                Clicked="AddActorClicked"
+                Text="Add Actor" />
         </StackLayout>
     </ScrollView>
 </ContentPage>

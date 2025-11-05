@@ -9,7 +9,7 @@
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate pages:ViewToViewBinding}"
+        ContentTemplate="{DataTemplate pages:ActorsPage}"
         Route="Home" />
 
 </Shell>
